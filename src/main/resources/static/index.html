@@ -3,37 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>motorvognregister</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<body >
+<body class="bg-gray-100 p-8 grid grid-cols-5 gap-8">
 
-  <h1 >Kunde</h1>
+<div class="col-span-1">
 
-    <label for="navn" >Eiers navn:</label>
-    <input type="text" id="navn" >
+  <h1 class="text-2xl font-bold mb-4">Kunde</h1>
 
-    <label for="personnummer" >Eiers Personnummer:</label>
-    <input type="number" id="personnummer" >
+  <div class="mb-4">
+    <label for="navn" class="block text-sm font-semibold mb-1">Eiers navn:</label>
+    <input type="text" id="navn" class="border p-2 w-full">
+  </div>
 
-    <label for="adresse" >Eiers adresse:</label>
-    <input type="text" id="adresse" >
+  <div class="mb-4">
+    <label for="personnummer" class="block text-sm font-semibold mb-1">Eiers Personnummer:</label>
+    <input type="number" id="personnummer" class="border p-2 w-full">
+  </div>
 
-    <label for="kjennetegn" >Kjennetegn:</label>
-    <input type="text" id="kjennetegn" >
+  <div class="mb-4">
+    <label for="adresse" class="block text-sm font-semibold mb-1">Eiers adresse:</label>
+    <input type="text" id="adresse" class="border p-2 w-full">
+  </div>
 
-    <label for="bilmerke" >Bilmerke:</label>
-    <input type="text" id="bilmerke" >
+  <div class="mb-4">
+    <label for="kjennetegn" class="block text-sm font-semibold mb-1">Kjennetegn:</label>
+    <input type="text" id="kjennetegn" class="border p-2 w-full">
+  </div>
 
-    <label for="biltype" >Bil Type:</label>
-    <input type="text" id="biltype" >
+  <div class="mb-4">
+    <label for="bilmerke" class="block text-sm font-semibold mb-1">Bilmerke:</label>
+    <input type="text" id="bilmerke" class="border p-2 w-full">
+  </div>
 
-  <button onclick="lagreMotorvogn()" >Registrer</button>
+  <div class="mb-4">
+    <label for="biltype" class="block text-sm font-semibold mb-1">Bil Type:</label>
+    <input type="text" id="biltype" class="border p-2 w-full">
+  </div>
 
+  <button onclick="lagreMotorvogn()" class="bg-blue-500 text-white p-2 rounded">Registrer</button>
 
-  <div id="motorvognene" ></div>
+</div>
 
-  <button onclick="slettAlleMotorvogner()" >Slett registrerte</button>
+<div class="col-span-4">
+  <div id="motorvognene" class="mt-8"></div>
 
+  <button onclick="slettAlleMotorvogner()" class="bg-red-500 text-white p-2 rounded mt-4">Slett registrerte</button>
+</div>
 <script type="application/javascript">
   function lagreMotorvogn() {
     const motorvogn = {
