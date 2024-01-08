@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>motorvognregister</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body >
+
+  <h1 >Kunde</h1>
+
+    <label for="navn" >Eiers navn:</label>
+    <input type="text" id="navn" >
+
+    <label for="personnummer" >Eiers Personnummer:</label>
+    <input type="number" id="personnummer" >
+
+    <label for="adresse" >Eiers adresse:</label>
+    <input type="text" id="adresse" >
+
+    <label for="kjennetegn" >Kjennetegn:</label>
+    <input type="text" id="kjennetegn" >
+
+    <label for="bilmerke" >Bilmerke:</label>
+    <input type="text" id="bilmerke" >
+
+    <label for="biltype" >Bil Type:</label>
+    <input type="text" id="biltype" >
+
+  <button onclick="lagreMotorvogn()" >Registrer</button>
+
+
+  <div id="motorvognene" ></div>
+
+  <button onclick="slettAlleMotorvogner()" >Slett registrerte</button>
+
+<script type="application/javascript">
+</script>
+</body>
+</html>
