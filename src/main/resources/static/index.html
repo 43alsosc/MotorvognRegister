@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Set character set and title for the HTML document -->
   <meta charset="UTF-8">
   <title>motorvognregister</title>
+
+  <!-- Include Tailwind CSS for styling -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+  <!-- Include jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body class="bg-gray-100 p-8 grid grid-cols-5 gap-8">
 
+<!-- Left column with form inputs -->
 <div class="col-span-1">
 
-  <h1 class="text-2xl font-bold mb-4">Kunde</h1>
+  <h1 class="text-2xl font-bold mb-4">Motorvogn register</h1>
 
+  <!-- Input fields for owner's information -->
   <div class="mb-4">
     <label for="navn" class="block text-sm font-semibold mb-1">Eiers navn:</label>
     <input type="text" id="navn" class="border p-2 w-full">
@@ -27,6 +34,7 @@
     <input type="text" id="adresse" class="border p-2 w-full">
   </div>
 
+  <!-- Input fields for vehicle information -->
   <div class="mb-4">
     <label for="kjennetegn" class="block text-sm font-semibold mb-1">Kjennetegn:</label>
     <input type="text" id="kjennetegn" class="border p-2 w-full">
@@ -42,17 +50,24 @@
     <input type="text" id="biltype" class="border p-2 w-full">
   </div>
 
+  <!-- Button to register the vehicle -->
   <button onclick="lagreMotorvogn()" class="bg-blue-500 text-white p-2 rounded">Registrer</button>
 
 </div>
 
+<!-- Right column to display registered vehicles and a button to delete all records -->
 <div class="col-span-4">
   <div id="motorvognene" class="mt-8"></div>
 
+  <!-- Button to delete all registered vehicles -->
   <button onclick="slettAlleMotorvogner()" class="bg-red-500 text-white p-2 rounded mt-4">Slett registrerte</button>
 </div>
+
+<!-- JavaScript section for interacting with the server -->
 <script type="application/javascript">
+  // Function to save a vehicle record
   function lagreMotorvogn() {
+    // Gather data from input fields
     const motorvogn = {
       navn: $("#navn").val(),
       personnummer: $("#personnummer").val(),
@@ -62,10 +77,13 @@
       biltype: $("#biltype").val()
     };
 
+    // Send a POST request to the server to save the vehicle record
     $.post("/lagre", motorvogn, function () {
+      // After saving, retrieve and display all vehicle records
       hentAlleMotorvogner();
     });
 
+    // Clear input fields after saving
     $("#navn").val("");
     $("#personnummer").val("");
     $("#adresse").val("");
@@ -74,26 +92,36 @@
     $("#biltype").val("");
   }
 
+  // Function to retrieve all vehicle records
   function hentAlleMotorvogner() {
+    // Send a GET request to the server to get all vehicle records
     $.get("/hentAlle", function (data) {
+      // Format and display the received data
       formaterData(data);
     });
   }
 
+  // Function to format and display vehicle records in a table
   function formaterData(motorvogner) {
-    let ut = "<table><tr><th>Navn</th><th>Personnummer</th><th>Adresse</th><th>Kjennetegn</th><th>Bilmerke</th><th>Bil Type</th></tr>";
+    let ut = "<table class='w-full border-collapse border border-gray-400'><thead><tr><th class='p-2 border border-gray-400'>Navn</th><th class='p-2 border border-gray-400'>Personnummer</th><th class='p-2 border border-gray-400'>Adresse</th><th class='p-2 border border-gray-400'>Kjennetegn</th><th class='p-2 border border-gray-400'>Bilmerke</th><th class='p-2 border border-gray-400'>Bil Type</th></tr></thead><tbody>";
     for (const motorvogn of motorvogner) {
-      ut += "<tr><td>" + motorvogn.navn + "</td><td>" + motorvogn.personnummer + "</td><td>" + motorvogn.adresse + "</td><td>" + motorvogn.kjennetegn + "</td><td>" + motorvogn.bilmerke + "</td><td>" + motorvogn.biltype + "</td></tr>";
+      // Populate the table rows with vehicle data
+      ut += `<tr class='border border-gray-400'><td class='p-2 border border-gray-400'>${motorvogn.navn}</td><td class='p-2 border border-gray-400'>${motorvogn.personnummer}</td><td class='p-2 border border-gray-400'>${motorvogn.adresse}</td><td class='p-2 border border-gray-400'>${motorvogn.kjennetegn}</td><td class='p-2 border border-gray-400'>${motorvogn.bilmerke}</td><td class='p-2 border border-gray-400'>${motorvogn.biltype}</td></tr>`
     }
-    ut += "</table>";
+    // Close the table and set the HTML content of the specified div
+    ut += "</tbody></table>";
     $("#motorvognene").html(ut);
   }
 
+  // Function to delete all vehicle records
   function slettAlleMotorvogner() {
+    // Send a GET request to the server to delete all vehicle records
     $.get("/slettAlle", function(){
+      // After deletion, retrieve and display all vehicle records
       hentAlleMotorvogner();
     });
   }
 </script>
 </body>
 </html>
+```
