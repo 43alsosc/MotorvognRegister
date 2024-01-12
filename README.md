@@ -1,3 +1,36 @@
+Dette prosjektet er et motorvognregister implementert ved hjelp av Spring Boot (Java) på serversiden og HTML med JavaScript på klientsiden. Målet med prosjektet er å opprette, lagre, hente og slette motorvognsdata gjennom en nettleserbasert brukergrensesnitt.
+
+Serversiden (Java):
+
+Motorvogn-klasse:
+
+Representerer en motorvogn med attributter som navn, adresse, personnummer, kjennetegn, bilmerke og biltype.
+Har gettere og settere for alle attributtene.
+
+MotorvognController-klasse:
+
+En Spring Boot-kontroller som håndterer HTTP-forespørsler.
+Har metoder for å lagre en ny motorvogn, hente alle lagrede motorvogner og slette alle lagrede motorvogner.
+
+MotorvognRegisterApplication-klasse:
+
+Hovedklassen som starter Spring Boot-applikasjonen.
+Klientsiden (HTML og JavaScript):
+
+HTML-fil:
+
+Bruker HTML for å opprette et enkelt brukergrensesnitt med input-felter for eier- og kjøretøyinformasjon.
+Inkluderer Tailwind CSS for styling.
+
+JavaScript-funksjoner:
+
+lagreMotorvogn(): Samler data fra input-felter, sender en POST-forespørsel til serveren for å lagre motorvognen, og oppdaterer deretter visningen av alle motorvogner.
+hentAlleMotorvogner(): Sender en GET-forespørsel for å hente alle motorvogner fra serveren og viser resultatet i en tabell.
+formaterData(motorvogner): Formatterer motorvognsdataene og viser dem i HTML-tabellen.
+slettAlleMotorvogner(): Sender en GET-forespørsel for å slette alle motorvogner, og oppdaterer deretter visningen av alle motorvogner.
+
+
+
 Brukertesting Skjema
 
 ### 1. Introduksjon:
