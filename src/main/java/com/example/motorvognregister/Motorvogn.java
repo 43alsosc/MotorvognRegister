@@ -4,7 +4,7 @@ public class Motorvogn {
 
     private String navn;
     private String adresse;
-    private int personnummer;
+    private long personnummer;
     private String kjennetegn;
     private String bilmerke;
     private String biltype;
@@ -12,7 +12,7 @@ public class Motorvogn {
     public Motorvogn() {
     }
 
-    public Motorvogn(String navn, String adresse, int personnummer, String kjennetegn, String bilmerke, String biltype) {
+    public Motorvogn(String navn, String adresse, long personnummer, String kjennetegn, String bilmerke, String biltype) {
         this.navn = navn;
         this.adresse = adresse;
         this.personnummer = personnummer;
@@ -38,11 +38,11 @@ public class Motorvogn {
         this.adresse = adresse;
     }
 
-    public int getPersonnummer() {
+    public long getPersonnummer() {
         return personnummer;
     }
 
-    public void setPersonnummer(int personnummer) {
+    public void setPersonnummer(long personnummer) {
         this.personnummer = personnummer;
     }
 

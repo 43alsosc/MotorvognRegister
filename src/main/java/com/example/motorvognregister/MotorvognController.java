@@ -9,6 +9,8 @@ import java.util.List;
 public class MotorvognController {
 
     public final List<Motorvogn> alleMotorvogner = new ArrayList<>();
+    private final BilDatabase bilDatabase = new BilDatabase();
+
 
     @PostMapping("/lagre")
     public void lagreKunde(Motorvogn innMotorvogn){
@@ -24,5 +26,16 @@ public class MotorvognController {
     @GetMapping("/slettAlle")
     public void slettAlle() {
         alleMotorvogner.clear();
+    }
+
+
+    @GetMapping("/hentBilmerker")
+    public List<String> hentBilmerker() {
+        return bilDatabase.hentBilmerker();
+    }
+
+    @GetMapping("/hentBilTyper")
+    public List<String> hentBilTyper(@RequestParam String bilmerke) {
+        return bilDatabase.hentBilTyper(bilmerke);
     }
 }

@@ -175,6 +175,7 @@
   // Function to retrieve car types based on car brand
   function hentBilTyper() {
     const valgtBilmerke = $('#bilmerke').val();
+
     $.get(`/hentBilTyper?bilmerke=${valgtBilmerke}`, function (data) {
       oppdaterBilTyperDropdown(data);
     });
@@ -184,6 +185,7 @@
   function oppdaterBilTyperDropdown(bilTyper) {
     const biltypeDropdown = $('#biltype');
     biltypeDropdown.empty();
+
     for (const biltype of bilTyper) {
       biltypeDropdown.append(`<option value="${biltype}">${biltype}</option>`);
     }
