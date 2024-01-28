@@ -1,67 +1,108 @@
+# Motorvognregister Prosjekt
+
 Dette prosjektet er et motorvognregister implementert ved hjelp av Spring Boot (Java) på serversiden og HTML med JavaScript på klientsiden. Målet med prosjektet er å opprette, lagre, hente og slette motorvognsdata gjennom en nettleserbasert brukergrensesnitt.
 
-Serversiden (Java):
+## Serversiden (Java):
 
-Motorvogn-klasse:
+### Motorvogn-klasse:
 
-Representerer en motorvogn med attributter som navn, adresse, personnummer, kjennetegn, bilmerke og biltype.
-Har gettere og settere for alle attributtene.
+- Representerer en motorvogn med attributter som navn, adresse, personnummer, kjennetegn, bilmerke og biltype.
+- Har gettere og settere for alle attributtene.
 
-MotorvognController-klasse:
+### MotorvognController-klasse:
 
-En Spring Boot-kontroller som håndterer HTTP-forespørsler.
-Har metoder for å lagre en ny motorvogn, hente alle lagrede motorvogner og slette alle lagrede motorvogner.
+- En Spring Boot-kontroller som håndterer HTTP-forespørsler.
+- Har metoder for å lagre en ny motorvogn, hente alle lagrede motorvogner og slette alle lagrede motorvogner.
 
-MotorvognRegisterApplication-klasse:
+### MotorvognRegisterApplication-klasse:
 
-Hovedklassen som starter Spring Boot-applikasjonen.
-Klientsiden (HTML og JavaScript):
+- Hovedklassen som starter Spring Boot-applikasjonen.
 
-HTML-fil:
+### BilDatabase-klasse:
 
-Bruker HTML for å opprette et enkelt brukergrensesnitt med input-felter for eier- og kjøretøyinformasjon.
-Inkluderer Tailwind CSS for styling.
+- Inneholder hashmap array for å vise til hvilke biltyper som er under bilmerke
+- Det er her index.html henter bilmerke og biltype informasjoen
 
-JavaScript-funksjoner:
+## Klientsiden (HTML og JavaScript):
 
-lagreMotorvogn(): Samler data fra input-felter, sender en POST-forespørsel til serveren for å lagre motorvognen, og oppdaterer deretter visningen av alle motorvogner.
-hentAlleMotorvogner(): Sender en GET-forespørsel for å hente alle motorvogner fra serveren og viser resultatet i en tabell.
-formaterData(motorvogner): Formatterer motorvognsdataene og viser dem i HTML-tabellen.
-slettAlleMotorvogner(): Sender en GET-forespørsel for å slette alle motorvogner, og oppdaterer deretter visningen av alle motorvogner.
+### HTML-fil:
 
+- Bruker HTML for å opprette et enkelt brukergrensesnitt med input-felter for eier- og kjøretøyinformasjon.
+- Inkluderer Tailwind CSS for styling.
 
+### JavaScript-funksjoner:
 
-Brukertesting Skjema
+#### `lagreMotorvogn()`:
+Denne funksjonen samler data fra input-felter, konverterer kjennetegnet til store bokstaver for ensartethet, validerer kjennetegnets format, og sender deretter en POST-forespørsel til serveren for å lagre motorvognen. Etter vellykket lagring oppdateres visningen av alle motorvogner ved å kalle `hentAlleMotorvogner()`.
+
+#### `hentAlleMotorvogner()`:
+Denne funksjonen sender en GET-forespørsel til serveren for å hente alle motorvogner. Når dataene er mottatt, blir de formatert ved hjelp av `formaterData()` og deretter vist i en HTML-tabell.
+
+#### `formaterData(motorvogner)`:
+Denne funksjonen tar inn motorvognsdata som parameter, formaterer dem og viser resultatet i en HTML-tabell.
+
+#### `slettAlleMotorvogner()`:
+Denne funksjonen sender en GET-forespørsel til serveren for å slette alle motorvogner. Etter vellykket sletting blir visningen av alle motorvogner oppdatert ved å kalle `hentAlleMotorvogner()`.
+
+#### `visFeilmeldingOgOppdaterFormat(inputElement, melding, formatTekst)`:
+Denne funksjonen viser en feilmelding under et inndatafelt og oppdaterer formatteksten basert på gitt input.
+
+#### `skjulFeilmeldingOgOppdaterFormat(inputElement)`:
+Denne funksjonen skjuler en feilmelding under et inndatafelt og oppdaterer formatteksten.
+
+#### `hentBilTyper()`:
+Denne funksjonen henter biltyper basert på valgt bilmerke ved å sende en GET-forespørsel til serveren.
+
+#### `oppdaterBilTyperDropdown(bilTyper)`:
+Denne funksjonen oppdaterer nedtrekkslisten for biltyper med de mottatte biltyper.
+
+#### `oppdaterBilmerkeDropdown(bilmerker)`:
+Denne funksjonen oppdaterer nedtrekkslisten for bilmerker med de mottatte bilmerker.
+
+#### `hentBilmerker()`:
+Denne funksjonen henter bilmerker fra serveren ved å sende en GET-forespørsel.
+
+#### Event listener: `$('#personnummer').on('input', ...)`
+Denne event-lytteren begrenser lengden på inndatafeltet for personnummer og trimmer verdien hvis den overstiger grensen.
+
+#### Event listener: `$('#kjennetegn').on('input', ...)`
+Denne event-lytteren validerer formatet på kjennetegnet mens brukeren skriver inn, og gir tilbakemelding til brukeren.
+
+## Brukertesting Skjema
 
 ### 1. Introduksjon:
 
-Prosjektnavn: [Prosjektnavnet ditt]
-Dato for testing: [Dato]
+**Prosjektnavn:** Motorvognregister  
+**Dato for testing:** [Dato]
 
 ### 2. Generell informasjon:
 
-##### Testdeltakerens navn:
-##### Alder:
-##### Yrkesbakgrunn:
-##### Tidligere erfaring med lignende systemer:
+**Testdeltakerens navn:** [Testdeltakerens navn]  
+**Alder:** [Alder]  
+**Yrkesbakgrunn:** [Yrkesbakgrunn]  
+**Tidligere erfaring med lignende systemer:** [Erfaring]
 
 ### 3. Oppgaver:
 
 #### 1. Registrere en ny motorvogn:
-- Instruksjon: Prøv å registrere en ny motorvogn ved å fylle ut alle feltene i skjemaet.
 
-- #### Observasjoner: 
- - - Hvordan navigerte testdeltakeren gjennom skjemaet?
- - - Var det noen spesifikke felt som virket forvirrende eller vanskelige å fylle ut?
- - - Ble alle nødvendige felt forstått?
+**Instruksjon:** Prøv å registrere en ny motorvogn ved å fylle ut alle feltene i skjemaet.
+
+**Observasjoner:** 
+- Hvordan navigerte testdeltakeren gjennom skjemaet?
+- Var det noen spesifikke felt som virket forvirrende eller vanskelige å fylle ut?
+- Ble alle nødvendige felt forstått?
 
 #### 2. Se på oversikten over registrerte motorvogner:
 
-- Instruksjon: Se på oversikten over registrerte motorvogner.
-- #### Observasjoner:
-- - Hvordan reagerte testdeltakeren på tabellen?
-- - Var informasjonen lett å forstå?
-- - Fikk testdeltakeren en god oversikt over registrerte motorvogner?
+**Instruksjon:**
+
+ Se på oversikten over registrerte motorvogner.
+
+**Observasjoner:**
+- Hvordan reagerte testdeltakeren på tabellen?
+- Var informasjonen lett å forstå?
+- Fikk testdeltakeren en god oversikt over registrerte motorvogner?
 
 ### 4. Tilbakemeldinger:
 
@@ -82,158 +123,136 @@ Dato for testing: [Dato]
 ### 7. Takk for deltakelsen!
 
 
-Testdeltaker 1: Magnhild (45 år, Lærer)
+Selvfølgelig! Her er simuleringen av tre testdeltakere som fyller ut brukertesting-skjemaet:
 
-Introduksjon:
+# Testdeltaker 1:
 
-Prosjektnavn: Motorvognregister
-Dato for testing: 2024-01-10
+**Prosjektnavn:** Motorvognregister  
+**Dato for testing:** 2024-01-27
 
-Generell informasjon:
+**Testdeltakerens navn:** Fredrik Alsos 
+**Alder:** 17  
+**Yrkesbakgrunn:** Sy Elev  
+**Tidligere erfaring med lignende systemer:** Har ingen tidligere erfaring med lignende systemer.
 
-Testdeltakerens navn: Magnhild
-Alder: 45
-Yrkesbakgrunn: Lærer
-Tidligere erfaring med lignende systemer: Lite, har ikke brukt lignende systemer så mye tidligere.
+#### Oppgave 1: Registrere en ny motorvogn:
 
-Oppgaver:
+**Observasjoner:** 
+- Fredrik navigerte gjennom skjemaet i moderat hastighet og fylte ut alle feltene uten problemer.
+- Ingen felt virket forvirrende eller vanskelige for Fredrik.
+- Han forsto alle nødvendige felt og fylte dem ut korrekt.
 
-Registrere en ny motorvogn:
+#### Oppgave 2: Se på oversikten over registrerte motorvogner:
 
-Observasjoner:
-Magnhild navigerte enkelt gjennom skjemaet.
-Ingen spesifikke felt virket forvirrende eller vanskelige å fylle ut.
-Alle nødvendige felt ble forstått.
+**Observasjoner:**
+- Fredrik reagerte positivt på tabellen og syntes informasjonen var lett å forstå.
+- Han fikk en god oversikt over registrerte motorvogner uten problemer.
 
-Se på oversikten over registrerte motorvogner:
+#### Tilbakemeldinger:
 
-Observasjoner:
-Magnhild reagerte positivt på tabellen.
-Informasjonen var lett å forstå.
-Hun fikk en god oversikt over registrerte motorvogner.
-Tilbakemeldinger:
+- Hva likte Fredrik best med systemet? Fredrik likte den enkle navigasjonen og den tydelige oversikten over registrerte motorvogner.
+- Hva var mest utfordrende eller forvirrende? Fredrik fant ingen utfordringer eller forvirrende elementer.
+- Eventuelle forslag til forbedringer: Ingen forslag til forbedringer fra Fredrik.
 
-Hva likte Magnhild best med systemet?
-Magnhild likte enkelheten og brukervennligheten.
-Hva var mest utfordrende eller forvirrende?
-Magnhild hadde ingen spesifikke utfordringer eller forvirringer.
-Eventuelle forslag til forbedringer:
-Gjør slett knappen rød.
+#### Generelle spørsmål:
 
-Generelle spørsmål:
+- Hvordan vil du beskrive din generelle opplevelse med systemet? Fredrik beskriver opplevelsen som svært positiv og intuitiv.
+- På en skala fra 1 til 10, hvor enkelt var det å bruke systemet? Fredrik gir en score på 9.
+- Vil du ha noen endringer eller tillegg til funksjonaliteten? Fredrik ønsker ingen endringer eller tillegg.
 
-Hvordan vil du beskrive din generelle opplevelse med systemet?
-Magnhild beskrev opplevelsen som positiv og effektiv.
-På en skala fra 1 til 10, hvor enkelt var det å bruke systemet?
-9 av 10.
-Vil du ha noen endringer eller tillegg til funksjonaliteten?
-Magnhild ønsker ingen endringer for øyeblikket.
+#### Avslutning:
 
-Avslutning:
+- Er det noe annet du ønsker å legge til eller kommentere? Fredrik har ingen ytterligere kommentarer.
 
-Er det noe annet du ønsker å legge til eller kommentere?
-Magnhild hadde ingen ytterligere kommentarer.
-Takk for deltakelsen!
+#### Takk for deltakelsen!
+
+# Testdeltaker 2:
+
+**Prosjektnavn:** Motorvognregister  
+**Dato for testing:** 2024-01-28
+
+**Testdeltakerens navn:** Carl Oscar Alsos  
+**Alder:** 46
+**Yrkesbakgrunn:** Barnehagelærer  
+**Tidligere erfaring med lignende systemer:** Har begrenset erfaring med lignende systemer.
+
+#### Oppgave 1: Registrere en ny motorvogn:
+
+**Observasjoner:** 
+- Carl Oscar navigerte gjennom skjemaet med høy hastighet og fylte ut alle feltene.
+- Han fant bilmerke-dropdownen lite forvirrende, klarte å velge riktig alternativ for han.
+- Carl Oscar forsto alle nødvendige felt.
+
+#### Oppgave 2: Se på oversikten over registrerte motorvogner:
+
+**Observasjoner:**
+- Carl Oscar reagerte positivt på tabellen.
+- Informasjonen var forståelig, men Carl Oscar ønsket filtrering av motorvogner.
+
+#### Tilbakemeldinger:
+
+- Hva likte Carl Oscar best med systemet? Carl Oscar likte den klare strukturen, men ønsket filtreringsalternativer.
+- Hva var mest utfordrende eller forvirrende? Ingenting var forvirrende for Carl Oscar.
+- Eventuelle forslag til forbedringer: Carl Oscar foreslår bedre formatering i tabellen og filtreringsalternativer.
+
+#### Generelle spørsmål:
+
+- Hvordan vil du beskrive din generelle opplevelse med systemet? Carl Oscar beskriver opplevelsen som positiv, men med noen forbedringspunkter.
+- På en skala fra 1 til 10, hvor enkelt var det å bruke systemet? Carl Oscar gir en score på 8.
+- Vil du ha noen endringer eller tillegg til funksjonaliteten? Carl Oscar ønsker bedre filtreringsalternativer og mer tydelig formatering.
+
+#### Avslutning:
+
+- Er det noe annet du ønsker å legge til eller kommentere? Nei, Carl Oscar har ikke noe mer å kommentere.
+
+#### Takk for deltakelsen!
+
+# Testdeltaker 3:
+
+**Prosjektnavn:** Motorvognregister  
+**Dato for testing:** 2024-01-25
+
+**Testdeltakerens navn:** Fredik Inpitak  
+**Alder:** 17  
+**Yrkesbakgrunn:** Elev  
+**Tidligere erfaring med lignende systemer:** Ingen tidligere erfaring med lignende systemer.
+
+#### Oppgave 1: Registrere en ny motorvogn:
+
+**Observasjoner:** 
+- Fredrik navigerte gjennom skjemaet sakte og trengte ekstra tid for å fylle ut alle feltene.
+- Han fant bilmerke-dropdownen og biltype-dropdownen forvirrende og spurte om hjelp.
+- Fredrik forsto etter hvert alle nødvendige felt med assistanse fra instruksjonene.
+
+#### Oppgave 2: Se på oversikten over registrerte motorvogner:
+
+**Observasjoner:**
+- Fredrik fant tabellen lite overveldene.
+
+#### Tilbakemeldinger:
+
+- Hva likte Fredrik best med systemet? Fredrik likte oversikten, men ønsket mer veiledning.
+- Hva var mest utfordrende eller forvirrende? Bilmerke- og biltype-dropdownene var utfordrende for Fredrik.
+- Eventuelle forslag til forbedringer: Fredrik foreslår mer tekst for å vise format o.l.
+
+#### Generelle spørsmål:
+
+- Hvordan vil du beskrive din generelle opplevelse med systemet? Fredrik beskriver opplevelsen som lite utfordrende.
+- På en skala fra 1 til 10, hvor enkelt var det å bruke systemet? Fredrik gir en score på 8.
+- Vil du ha noen endringer eller tillegg til funksjonaliteten?
+
+ Fredrik ønsker mer veiledning.
+
+#### Avslutning:
+
+- Nei
+
+#### Takk for deltakelsen!
 
 
-Testdeltaker 2: Sebasitan (17 år, Elev)
-
-Introduksjon:
-
-Prosjektnavn: Motorvognregister
-Dato for testing: 2024-01-10
-Generell informasjon:
-
-Testdeltakerens navn: Sebasitan
-Alder: 17
-Yrkesbakgrunn: Elev
-Tidligere erfaring med lignende systemer: Har ingen erfaring med lignende systemer.
-
-Oppgaver:
-
-Registrere en ny motorvogn:
-
-Observasjoner:
-Sebasitan navigerte raskt gjennom skjemaet.
-Ingen spesifikke felt virket forvirrende.
-Alle nødvendige felt ble forstått uten problemer.
-Se på oversikten over registrerte motorvogner:
-
-Observasjoner:
-Sebasitan reagerte positivt på tabellen.
-Informasjonen var lett å forstå.
-Fikk en god oversikt over registrerte motorvogner.
-
-Tilbakemeldinger:
-
-Hva likte du best med systemet?
-Sebasitan likte effektiviteten og hvordan systemet hjelper med registrering.
-Hva var mest utfordrende eller forvirrende?
-Sebasitan hadde ingen utfordringer eller forvirringer.
-Eventuelle forslag til forbedringer:
-Gjør slik at man må bekefte sletting av bilder
-
-Generelle spørsmål:
-
-Hvordan vil du beskrive din generelle opplevelse med systemet?
-Sebasitan beskrev opplevelsen som profesjonell og tidseffektiv.
-På en skala fra 1 til 10, hvor enkelt var det å bruke systemet?
-8 av 10.
-Vil du ha noen endringer eller tillegg til funksjonaliteten?
-Sebasitan ønsker ingen endringer for øyeblikket.
-Avslutning:
-
-Er det noe annet du ønsker å legge til eller kommentere?
-Sebasitan hadde ingen ytterligere kommentarer.
-Takk for deltakelsen!
-
-
-Introduksjon:
-
-Prosjektnavn: Motorvognregister
-Dato for testing: 2024-01-11
-Generell informasjon:
-
-Testdeltakerens navn: Sara
-Alder: 28
-Yrkesbakgrunn: Student i informatikk
-Tidligere erfaring med lignende systemer: Begrenset erfaring med lignende systemer.
-Oppgaver:
-
-Registrere en ny motorvogn:
-
-Observasjoner:
-Sara navigerte greit gjennom skjemaet, men tok litt tid.
-Noen felt virket litt forvirrende, spesielt personnummer.
-Hun forsto til slutt alle nødvendige felt.
-
-Se på oversikten over registrerte motorvogner:
-
-Observasjoner:
-Sara reagerte positivt på tabellen.
-Informasjonen var overkommelig å forstå.
-Fikk til slutt en god oversikt over registrerte motorvogner.
-
-Tilbakemeldinger:
-
-Hva likte Sara best med systemet?
-Sara likte enkelheten, men syntes noen felt var litt forvirrende.
-Hva var mest utfordrende eller forvirrende?
-Personnummerfeltet var litt utfordrende for Sara.
-Eventuelle forslag til forbedringer:
-Sara foreslo å legge til hjelpetekster for noen felt.
-Generelle spørsmål:
-
-Hvordan vil du beskrive din generelle opplevelse med systemet?
-Sara beskrev opplevelsen som positiv, men med noen små utfordringer.
-På en skala fra 1 til 10, hvor enkelt var det å bruke systemet?
-7 av 10.
-Vil du ha noen endringer eller tillegg til funksjonaliteten?
-Sara ønsker hjelpetekster eller mer forklaring på noen felt.
-Avslutning:
-
-Er det noe annet du ønsker å legge til eller kommentere?
-Sara hadde ingen ytterligere kommentarer.
-Takk for deltakelsen!
-
-Glemte å trykke på commit på brukertestingen :/
+# Brukertesting endringer
+- Jeg la til Format under enkelte felt for å vise hva som skulle skrives.
+- Jeg la til maks tall i personnummer og kjennetegn.
+- Gjorde "Eiers adresse om til et text area for å ha mer plass på å skrive adresse.
+- La til errorer når enkelte ting ble gjort feil.
+- Endret fra "Eiers Navn" til "Eiers Fulle Navn" fordi Carl Oscar var usikker på om han skulle skrive hele navnet.
