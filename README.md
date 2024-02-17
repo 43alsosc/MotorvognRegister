@@ -123,8 +123,6 @@ Denne event-lytteren validerer formatet på kjennetegnet mens brukeren skriver i
 ### 7. Takk for deltakelsen!
 
 
-Selvfølgelig! Her er simuleringen av tre testdeltakere som fyller ut brukertesting-skjemaet:
-
 # Testdeltaker 1:
 
 **Prosjektnavn:** Motorvognregister  
