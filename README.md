@@ -1,5 +1,6 @@
 # Motorvognregister Prosjekt
 
+Dette prosjektet er laget i Vg2, 2 IM på Akademiet Oslo Vgs.
 Dette prosjektet er et motorvognregister implementert ved hjelp av Spring Boot (Java) på serversiden og HTML med JavaScript på klientsiden. Målet med prosjektet er å opprette, lagre, hente og slette motorvognsdata gjennom en nettleserbasert brukergrensesnitt.
 
 ## Serversiden (Java):
